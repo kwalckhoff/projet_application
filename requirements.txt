@@ -1,0 +1,7 @@
+$ docker pull postgres
+
+$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+$ docker run -d -p 3000:3000 -v /srv/data/metabase:/metabase-data -e "MB_DB_FILE=/scooter_trip.csv" --name metabase metabase/metabase
+
+$ 
