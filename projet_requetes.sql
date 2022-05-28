@@ -45,13 +45,30 @@ select avg(Duration),
 from scooter
 group by extract(dow from Created_At::timestamp);
 
-select Status, avg(Duration)
-from scooter 
-group by Status
-order by avg(Duration) desc;
 
-select Status, sum(Price)
-from scooter 
-group by Status
-order by sum(price) desc;
+select sum(Price), City_ID 
+from scooter
+group by City_ID
+order by sum(Price) desc;
 
+
+select count(distinct(User_ID)), City_ID 
+from scooter 
+group by City_ID
+order by count(distinct(User_ID)) desc;
+
+
+with first_trip_per_user as (
+    select user_id, date(min(created_at)) as first_trip_day from projet group by user_id 
+)
+select count(*), 
+    first_trip_day
+from first_trip_per_user
+group by date(first_trip_day) 
+
+
+select count(distinct(vehicle_id)) from scooter;
+
+select count(*) from scooter;
+
+select count(distinct(user_id)) from scooter;
